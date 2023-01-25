@@ -7,7 +7,6 @@ from sqlalchemy_json    import MutableJson
 from database import Base
 from datetime import datetime
 
-
 class Lov( Base ):
     __tablename__ = 'list_of_values'
 
