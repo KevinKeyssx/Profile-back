@@ -34,20 +34,6 @@ models: dict  = {
     'lovvals'       : lov_model.Lov_Vals, 
 }
 
-# Guardar un modelo
-async def save(
-    key     : str,
-    insert  : bool,
-    schema  : any,
-    db      : "Session"
-) -> any:
-    if insert:
-        schema = models.get(key)(**schema.dict())
-    db.add(schema)
-    db.commit()
-    db.refresh(schema)
-    return schemas.get(key).from_orm(schema)
-
 # Obtener todos los datos un modelo
 async def search_all(
     key : str,
