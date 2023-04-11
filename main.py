@@ -12,7 +12,7 @@ app = FastAPI(title = 'Profile Back', description = 'My personal profile')
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins       = ["https://profile-kevinkeyssx.vercel.app"],
+    allow_origins       = ["https://profile-kevinkeyssx.vercel.app", "https://www.kevinkeyssx.com"],
     allow_credentials   = True,
     allow_methods       = ["*"],
     allow_headers       = ["*"],
