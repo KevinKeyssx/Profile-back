@@ -16,6 +16,7 @@ app.add_middleware(
         "https://profile-kevinkeyssx.vercel.app",
         "https://www.kevinkeyssx.com",
         "https://www.kevinkeyssx.dev",
+        "http://localhost:3000",
     ],
     allow_credentials   = True,
     allow_methods       = ["*"],
