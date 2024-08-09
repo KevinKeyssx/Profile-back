@@ -59,4 +59,4 @@ class UpdateDescriptionModel(IdModel, DescriptionModel):
 
 class GetModel(IdModel, SaveModel, SkillModel):
     class Config: 
-        orm_mode = True
+        from_attributes=True

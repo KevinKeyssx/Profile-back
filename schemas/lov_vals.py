@@ -27,13 +27,13 @@ class SaveLovVals(BaseLovVals, DescriptionModel):
 
 class GetLovVal(IdModel, SaveLovVals):
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class GetLovVals(GetLovVal):
     lov: GetModel
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class GetInfoLovVals(GetModel):
