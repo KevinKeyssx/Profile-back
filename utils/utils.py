@@ -21,6 +21,7 @@ def isString(value: str) -> bool:
 
     return False
 
+
 def stringToJson(value: str) -> str:
     first   = value[0]
     last    = value[-1]
@@ -29,6 +30,7 @@ def stringToJson(value: str) -> str:
         return value
 
     return '"' + value + '"'
+
 
 def validateToken(value: str) -> bool:
     if value == os.getenv("token"):
