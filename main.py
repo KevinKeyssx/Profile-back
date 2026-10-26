@@ -14,9 +14,10 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins       = [
         "https://profile-kevinkeyssx.vercel.app",
+        "https://cv-kevinkeyssx.vercel.app",
         "https://www.kevinkeyssx.com",
         "https://www.kevinkeyssx.dev",
-        "http://localhost:3000",
+        "http://localhost:5173",
     ],
     allow_credentials   = True,
     allow_methods       = ["*"],

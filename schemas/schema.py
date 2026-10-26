@@ -28,7 +28,9 @@ class ActiveModel(BaseModel):
 
 
 class CreateModel(BaseModel):
-    created_at: datetime = Field(...)
+    created_at: Optional[ datetime ] = Field(
+        default_factory = datetime.now
+    )
 
 
 class CommentModel(BaseModel):
@@ -55,6 +57,27 @@ class SaveModel(DescriptionModel, BaseModels, SkillModel):
 
 class UpdateDescriptionModel(IdModel, DescriptionModel):
     pass
+
+
+class UpdatePatchModel(BaseModel):
+    description : Optional[ str ]  = Field(
+        default     = None,
+        min_length  = 1,
+        max_length  = 100,
+        example     = "Detalle"
+    )
+    active      : Optional[ bool ] = Field(
+        default = None,
+        example = True
+    )
+    skill       : Optional[ Any ]  = Field(
+        default = None,
+        example = {}
+    )
+    comment     : Optional[ str ]  = Field(
+        default = None,
+        example = "Descripción del valor"
+    )
 
 
 class GetModel(IdModel, SaveModel, SkillModel):

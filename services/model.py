@@ -34,6 +34,20 @@ models: dict  = {
     'lovvals'       : lov_model.Lov_Vals, 
 }
 
+# Guardar o insertar un modelo
+async def save(
+    key     : str,
+    insert  : bool,
+    schema  : any,
+    db      : "Session"
+) -> any:
+    if ( insert ):
+        schema = models.get( key )( **schema.model_dump() )
+        db.add( schema )
+    db.commit()
+    db.refresh( schema )
+    return schemas.get( key ).from_orm( schema )
+
 # Obtener todos los datos un modelo
 async def search_all(
     key : str,
@@ -111,6 +125,21 @@ async def delete(
     model   : any, 
     db      : "Session"
 ) -> bool:
-    db.delete(model)
+    db.delete( model )
     db.commit()
     return True
+
+# Elimina un modelo lov y todos sus hijos en cascada
+async def delete_lov_cascade(
+    id  : int, 
+    db  : "Session"
+) -> bool:
+    db.query( lov_model.Lov_Vals ).filter(
+        lov_model.Lov_Vals.lov_id == id
+    ).delete( synchronize_session = False )
+    lov = await search_by_id( "lov", id, db )
+    if ( lov is not None ):
+        db.delete( lov )
+        db.commit()
+        return True
+    return False
